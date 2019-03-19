@@ -3,7 +3,7 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
-import { FormsModule } from '@angular/forms';
+
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
@@ -11,9 +11,8 @@ describe('AppComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [AppModule,FormsModule],
-
-providers: [
+        imports: [AppModule],
+        providers: [
           { provide: APP_BASE_HREF, useValue: '/' },
         ]
       }).compileComponents();
