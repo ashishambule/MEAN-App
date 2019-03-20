@@ -10,14 +10,14 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   postData(user) {
-    this.http.post(`${this.uri}/register`, user)
-    .subscribe(res => console.log('Register Done'));
+    this.http
+      .post(`${this.uri}/register`, user)
+      .subscribe(res => console.log('Register Done'));
   }
 
-  loginUser(user){
-    this.http.post(`${this.uri}/login`,user)
-    .subscribe(res=>console.log('Login Done'))
-}
-
-
+  loginUser(user) {
+    return this.http
+      .post(`${this.uri}/login`, user)
+      .subscribe(res => console.log('Login Done'));
+  }
 }

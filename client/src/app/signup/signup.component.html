@@ -24,8 +24,8 @@
                         <input type="password" class="form-control input-underline input-lg" id="password2" placeholder="Confirm Password" [(ngModel)]="password2" [ngModelOptions]="{standalone:true}">
                     </div>
                 </div>
-                <a class="btn rounded-btn" (click)="signup()" [routerLink]="['/dashboard']">{{'Register'}}</a>&nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/login']">{{ 'Log in'}}</a>
+                <a class="btn rounded-btn" (click)="signup()">{{'Register'}}</a>&nbsp;
+                <a class="btn rounded-btn" [routerLink] = "['/login']">{{ 'Log in'}}</a>
             </form>
         </div>
     </div>
