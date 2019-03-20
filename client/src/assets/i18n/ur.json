@@ -35,6 +35,6 @@
     "Email": "Email",
     "Password": "Password",
     "Repeat Password": "Repeat Password",
-    "Register": "Register",
+    "signup": "signup",
     "Log in": "Log in"
 }

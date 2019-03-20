@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "args": ["${relativeFile}"],
-      "runtimeArgs": [ "--no-lazy","-r", "ts-node/register"],
+      "runtimeArgs": [ "--no-lazy","-r", "ts-node/signup"],
       "sourceMaps": true,
       "cwd": "${workspaceRoot}",
       "protocol": "inspector",

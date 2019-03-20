@@ -6,22 +6,26 @@
             <form role="form">
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="{{ 'Full Name' | translate }}">
+                        <input type="text" class="form-control input-underline input-lg" id="schoolName" placeholder="School Name" [(ngModel)]="schoolName" [ngModelOptions]="{standalone:true}">
+                    </div>
+                    <!-- <label>{{schoolName}}</label> -->
+                    <div class="form-group">
+                      <input type="text" class="form-control input-underline input-lg" id="principalName" placeholder="Principal Name" [(ngModel)]="principalName" [ngModelOptions]="{standalone:true}">
+                  </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control input-underline input-lg" id="email" placeholder="Email" [(ngModel)]="email" [ngModelOptions]="{standalone:true}">
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="{{ 'Email' | translate }}">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="{{ 'Password' | translate }}">
+                        <input type="password" class="form-control input-underline input-lg" id="password" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone:true}">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="{{ 'Repeat Password' | translate }}">
+                        <input type="password" class="form-control input-underline input-lg" id="password2" placeholder="Confirm Password" [(ngModel)]="password2" [ngModelOptions]="{standalone:true}">
                     </div>
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']">{{ 'Register' | translate }}</a>&nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/login']">{{ 'Log in' | translate }}</a>
+                <a class="btn rounded-btn" (click)="signup()" [routerLink]="['/dashboard']">{{'Register'}}</a>&nbsp;
+                <a class="btn rounded-btn" [routerLink]="['/login']">{{ 'Log in'}}</a>
             </form>
         </div>
     </div>

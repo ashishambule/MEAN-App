@@ -35,6 +35,6 @@
     "Email": "Correo Electrónico",
     "Password": "Contraseña",
     "Repeat Password": "Repetir Contraseña",
-    "Register": "Registrarse",
+    "signup": "Registrarse",
     "Log in": "Entrar"
 }
