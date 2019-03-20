@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const passport = require('passport');
 
 // Load Validation
@@ -8,8 +7,8 @@ const validateSchoolInput = require('../../validation/school');
 
 // Load School Model
 const School = require('../../models/School');
-// Load User Model
-const User = require('../../models/User');
+
+
 
 router.post(
   '/',
@@ -21,33 +20,49 @@ router.post(
       errors,
       isValid
     } = validateSchoolInput(req.body);
-
     // Check Validation
     if (!isValid) {
       // Return any errors with 400 status
       return res.status(400).json(errors);
     }
-
     // Get fields
     const schoolFields = {};
     schoolFields.user = req.user.id;
     if (req.body.schoolName) schoolFields.schoolName = req.body.schoolName;
     if (req.body.location) schoolFields.location = req.body.location;
 
-    // Std
     schoolFields.std = {};
-    if (req.body.first) schoolFields.std.first = req.body.first;
-    if (req.body.second) schoolFields.std.second = req.body.second;
-    if (req.body.third) schoolFields.std.third = req.body.third;
-    if (req.body.fourth) schoolFields.std.fourth = req.body.fourth;
-    if (req.body.fifth) schoolFields.std.fifth = req.body.fifth;
-    if (req.body.sixth) schoolFields.std.sixth = req.body.sixth;
-    if (req.body.seventh) schoolFields.std.seventh = req.body.seventh;
-    if (req.body.eighth) schoolFields.std.eighth = req.body.eighth;
-    if (req.body.nineth) schoolFields.std.nineth = req.body.nineth;
-    if (req.body.tenth) schoolFields.std.tenth = req.body.tenth;
-
-
+    if (typeof req.body.first!=='undefined'){
+      schoolFields.std.first = req.body.first.split(',');
+    } 
+    if (typeof req.body.second!=='undefined'){
+      schoolFields.std.second = req.body.second.split(',');
+    } 
+    if (typeof req.body.third!=='undefined'){
+      schoolFields.std.third = req.body.third.split(',');
+    } 
+    if (typeof req.body.fourth!=='undefined'){
+      schoolFields.std.fourth = req.body.fourth.split(',');
+    } 
+    if (typeof req.body.fifth!=='undefined'){
+      schoolFields.std.fifth = req.body.fifth.split(',');
+    } 
+    if (typeof req.body.sixth!=='undefined'){
+      schoolFields.std.sixth = req.body.sixth.split(',');
+    } 
+    if (typeof req.body.seventh!=='undefined'){
+      schoolFields.std.seventh = req.body.seventh.split(',');
+    } 
+    if (typeof req.body.eighth!=='undefined'){
+      schoolFields.std.eighth = req.body.eighth.split(',');
+    } 
+    if (typeof req.body.nineth!=='undefined'){
+      schoolFields.std.nineth = req.body.nineth.split(',');
+    } 
+    if (typeof req.body.tenth!=='undefined'){
+      schoolFields.std.tenth = req.body.tenth.split(',');
+    } 
+    
     School.findOne({
       user: req.user.id
     }).then(school => {

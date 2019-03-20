@@ -64,9 +64,6 @@ export class SidebarComponent implements OnInit {
 
    
 
-    changeLang(language: string) {
-        this.translate.use(language);
-    }
 
     onLoggedout() {
         localStorage.removeItem('isLoggedin');

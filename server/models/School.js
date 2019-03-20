@@ -17,34 +17,34 @@ const SchoolSchema = new Schema({
   },
   std: {
     first: {
-      type: String
+      type: [String]
     },
     second: {
-      type: String
+      type: [String]
     },
     third: {
-      type: String
+      type: [String]
     },
     fourth: {
-      type: String
+      type: [String]
     },
     fifth: {
-      type: String
+      type: [String]
     },
     sixth: {
-      type: String
+      type: [String]
     },
     seventh: {
-      type: String
+      type: [String]
     },
     eighth: {
-      type: String
+      type: [String]
     },
     nineth: {
-      type: String
+      type: [String]
     },
     tenth: {
-      type: String
+      type: [String]
     }
   }
 });

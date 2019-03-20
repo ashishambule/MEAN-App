@@ -19,7 +19,13 @@ export class LoginComponent implements OnInit {
       email: this.email,
       password: this.password
     };
-    this.userService.loginUser(loginData)
+    this.userService.loginUser(loginData).subscribe((res: any) => {
+      // console.log(res);
+      if (res && res.success === true) {
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/dashboard'])
+      }
+    });
   }
   ngOnInit() {}
   onLoggedin() {

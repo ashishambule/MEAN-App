@@ -8,20 +8,20 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown" ngbDropdown>
         <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-          <i class="fa fa-user"></i> John Smith <b class="caret"></b>
+          <i class="fa fa-user"></i> {{schoolName}} <b class="caret"></b>
         </a>
         <div class="dropdown-menu-right" ngbDropdownMenu>
           <a class="dropdown-item" href="javascript:void(0)">
-            <i class="fa fa-fw fa-user"></i>  'Profile'
+            <i class="fa fa-fw fa-user"></i> Profile
           </a>
           <a class="dropdown-item" href="javascript:void(0)">
-            <i class="fa fa-fw fa-envelope"></i>  'Inbox'
+            <i class="fa fa-fw fa-envelope"></i> Inbox
           </a>
           <a class="dropdown-item" href="javascript:void(0)">
-            <i class="fa fa-fw fa-gear"></i>  'Settings'
+            <i class="fa fa-fw fa-gear"></i> Settings
           </a>
-          <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
-            <i class="fa fa-fw fa-power-off"></i>  'Log Out'
+          <a class="dropdown-item" href="" (click)="onLoggedout()">
+            <i class="fa fa-fw fa-power-off"></i> Log Out
           </a>
         </div>
       </li>

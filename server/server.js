@@ -6,6 +6,7 @@ const cors = require('cors');
 const users = require('./routes/api/users');
 const school = require('./routes/api/schools');
 
+
 const app = express();
 app.use(cors());
 // Body parser middleware
@@ -30,6 +31,7 @@ require('./config/passport')(passport);
 // Use Routes
 app.use('/api/users', users);
 app.use('/api/school', school);
+
 
 const port = process.env.PORT || 5000;
 
