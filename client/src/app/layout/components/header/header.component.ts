@@ -26,8 +26,6 @@ export class HeaderComponent implements OnInit {
         this.toggleSidebar();
       }
     });
-    this.getSchool();
-
   }
 
   ngOnInit() {
@@ -35,9 +33,14 @@ export class HeaderComponent implements OnInit {
     this.getSchool();
   }
 
+  ngDoCheck() {
+    this.principalName = localStorage.getItem('principalName');
+  }
+
   isToggled(): boolean {
     const dom: Element = document.querySelector('body');
     return dom.classList.contains(this.pushRightClass);
+    setTimeout(() =>  this.getSchool());
   }
 
   toggleSidebar() {
@@ -47,12 +50,14 @@ export class HeaderComponent implements OnInit {
   onLoggedout() {
     localStorage.removeItem('isLoggedin');
     localStorage.removeItem('token');
+    localStorage.removeItem('principalName');
     this.router.navigate(['/login']);
   }
   getSchool() {
     this.userService.getUserInfo().subscribe((res: any) => {
       if (res && res.principalName) {
         this.principalName = res.principalName;
+        localStorage.setItem('principalName', res.principalName)
       }
     });
   }

@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <div class="col col-sm-6">
+    <!-- <div class="col col-sm-6">
       <div class="card mb-3">
         <div class="card-header">
           Radar Chart
@@ -24,22 +24,23 @@
           </canvas>
         </div>
       </div>
-    </div>
+    </div> -->
+    <div class="col col-sm-6">
+        <div class="card mb-3">
+          <div class="card-header">
+            Pie Chart
+          </div>
+          <div class="card-body">
+            <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+              (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </div>
+      </div>
   </div>
   <div class="row">
 
-    <div class="col col-sm-6">
-      <div class="card mb-3">
-        <div class="card-header">
-          Pie Chart
-        </div>
-        <div class="card-body">
-          <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-          </canvas>
-        </div>
-      </div>
-    </div>
+
     <div class="col col-sm-6">
       <div class="card mb-3">
         <div class="card-header">

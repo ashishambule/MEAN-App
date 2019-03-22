@@ -14,7 +14,6 @@ import { PageHeaderModule } from "../../shared";
     DashboardRoutingModule,
     StatModule,
     Ng2Charts,
-   
     PageHeaderModule
   ],
   declarations: [DashboardComponent]

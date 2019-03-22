@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { SchoolService } from '../../school.service';
+import { BaseChartDirective } from 'ng2-charts';
+import { UserService } from 'src/app/user.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -9,6 +11,8 @@ import { SchoolService } from '../../school.service';
 })
 export class DashboardComponent implements OnInit {
   // Bar Chart
+  @ViewChild(BaseChartDirective)
+  public chart: BaseChartDirective;
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true,
@@ -23,12 +27,15 @@ export class DashboardComponent implements OnInit {
     }
   };
 
+  schoolName: String;
+  unauthorise: Boolean = false ;
+
   public barChartType: string;
   public barChartLegend: boolean;
 
   public barChartLabels: string[] = [];
   public barChartData: { data: number[]; label: String }[] = [
-    { data: [], label: 'Total Schools' }
+    { data: null, label: 'Total Schools' }
   ];
 
   public barChartLabels1: string[] = [
@@ -44,13 +51,16 @@ export class DashboardComponent implements OnInit {
     'Std-10'
   ];
   public barChartData1: { data: number[]; label: String }[] = [
-    { data: [], label: 'School1' }
+    { data: null, label: 'School1' }
   ];
   public schoolList: any = [];
   public studentCount = 0;
 
-  constructor(private schoolService: SchoolService) {
+  constructor(private schoolService: SchoolService,
+    private userService: UserService
+    ) {
     this.getSchoolList();
+    this.getSchool();
   }
 
   ngOnInit() {
@@ -65,6 +75,7 @@ export class DashboardComponent implements OnInit {
         this.studentCount = this.getStudentCount(res);
         this.barChartLabels = this.getSchoolNameList();
         this.barChartData[0].data = this.getNumberOfStudentsInSchool();
+        setTimeout(() =>  this.updateChart());
       }
     });
   }
@@ -75,6 +86,10 @@ export class DashboardComponent implements OnInit {
       count = count + school.students.length;
     });
     return count;
+  }
+
+ updateChart() {
+    this.chart.chart.update(); // This re-renders the canvas element.
   }
 
   getSchoolNameList() {
@@ -95,24 +110,27 @@ export class DashboardComponent implements OnInit {
   // events
   public chartClicked(e: any): void {
     console.log(e);
-
-    const school = this.schoolList.filter(
-      s => s.schoolName === e.active[0]._model.label
-    )[0];
-    const data = [
-      this.getStudentCountByStd(1, school),
-      this.getStudentCountByStd(2, school),
-      this.getStudentCountByStd(3, school),
-      this.getStudentCountByStd(4, school),
-      this.getStudentCountByStd(5, school),
-      this.getStudentCountByStd(6, school),
-      this.getStudentCountByStd(7, school),
-      this.getStudentCountByStd(8, school),
-      this.getStudentCountByStd(9, school),
-      this.getStudentCountByStd(10, school)
-    ];
-    this.barChartData1[0].data = data;
-    console.log(data);
+    this.barChartData1[0].data = null;
+    if(e.active[0]._model.label === this.schoolName){
+      const school = this.schoolList.filter(
+        s => s.schoolName === e.active[0]._model.label
+      )[0];
+      const data = [
+        this.getStudentCountByStd(1, school),
+        this.getStudentCountByStd(2, school),
+        this.getStudentCountByStd(3, school),
+        this.getStudentCountByStd(4, school),
+        this.getStudentCountByStd(5, school),
+        this.getStudentCountByStd(6, school),
+        this.getStudentCountByStd(7, school),
+        this.getStudentCountByStd(8, school),
+        this.getStudentCountByStd(9, school),
+        this.getStudentCountByStd(10, school)
+      ];
+      this.barChartData1[0].data = data;
+    }else{
+      this.unauthorise = true;
+    }
   }
 
   public chartHovered(e: any): void {
@@ -121,5 +139,14 @@ export class DashboardComponent implements OnInit {
 
   getStudentCountByStd(std, school) {
     return school.students.filter(s => parseInt(s.std, 10) === std).length;
+  }
+
+  getSchool() {
+    this.userService.getUserInfo().subscribe((res: any) => {
+      if (res && res.schoolName) {
+        this.schoolName = res.schoolName;
+        localStorage.setItem('principalName', res.principalName)
+      }
+    });
   }
 }

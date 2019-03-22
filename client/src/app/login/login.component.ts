@@ -28,11 +28,7 @@ export class LoginComponent implements OnInit {
       // console.log(res);
       if (res && res.success === true) {
         localStorage.setItem('token', res.token);
-        this.zone.run(() => {
-          setTimeout(() => {
-            this.fetchRequests(this);
-          }, 1000);
-        });
+        setTimeout(() =>  this.fetchRequests(this));
       }
     });
   }

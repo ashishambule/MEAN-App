@@ -3,40 +3,46 @@
 
   <div class="row">
     <div class="col-xl-6 col-md-6">
-      <app-stat [bgClass]="'warning'" [icon]="'fa-graduation-cap'" [count]=[schoolList.length] [label]="'Total Schools!'"></app-stat>
+      <app-stat [bgClass]="'warning'" [icon]="'fa-graduation-cap'" [count]=[schoolList.length]
+        [label]="'Total Schools!'"></app-stat>
     </div>
     <div class="col-xl-6 col-md-6">
       <app-stat [bgClass]="'success'" [icon]="'fa-users'" [count]=[studentCount] [label]="'Total Students!'"></app-stat>
     </div>
-      </div>
+  </div>
 </div>
 
-<div class="row">
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Bar Chart
-                </div>
-                <div class="card-body">
-                    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                    </canvas>
-                </div>
-
-            </div>
-        </div>
-        <div class="col col-sm-6">
-            <div class="card mb-3">
-                <div class="card-header">
-                    Bar Chart
-                </div>
-                <div class="card-body">
-                    <canvas baseChart [datasets]="barChartData1" [labels]="barChartLabels1" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                    </canvas>
-                </div>
-                 {{ barChartData1 | json }}
-
-            </div>
-        </div>
+<div class="row chart-row">
+  <div class="col col-sm-6">
+    <div class="card mb-3">
+      <div class="card-header">
+        Bar Chart
+      </div>
+      <div class="card-body" *ngIf="barChartData[0].data">
+        <canvas baseChart [datasets]=barChartData [labels]="barChartLabels" [options]="barChartOptions"
+          [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
     </div>
+  </div>
+  <div class="col col-sm-6">
+    <div class="card mb-3" *ngIf="barChartData1[0].data">
+      <div class="card-header">
+        {{schoolName}}
+      </div>
+      <div class="card-body" *ngIf="barChartData1[0].data">
+        <canvas baseChart [datasets]="barChartData1" [labels]="barChartLabels1" [options]="barChartOptions"
+          [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+          >
+        </canvas>
+      </div>
 
+    </div>
+    <div class="card mb-3" *ngIf="!barChartData1[0].data && unauthorise">
 
+      You are not authorise to view this school Information.
+
+    </div>
+  </div>
+</div>
