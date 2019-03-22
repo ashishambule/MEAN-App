@@ -9,6 +9,6 @@ describe('test-ng7 App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('SB Admin BS4 Angular7');
+    expect(page.getParagraphText()).toEqual('School Students Management');
   });
 });

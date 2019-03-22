@@ -26,13 +26,13 @@ export class HeaderComponent implements OnInit {
         this.toggleSidebar();
       }
     });
-    this.getSchool("1");
+    this.getSchool();
 
   }
 
   ngOnInit() {
     this.pushRightClass = 'push-right';
-    this.getSchool("2");
+    this.getSchool();
   }
 
   isToggled(): boolean {
@@ -49,9 +49,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
-  getSchool(a) {
-    console.log(a);
-    
+  getSchool() {
     this.userService.getUserInfo().subscribe((res: any) => {
       if (res && res.principalName) {
         this.principalName = res.principalName;

@@ -8,23 +8,20 @@
       <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
       <span>Charts</span>
     </a>
-    <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-      <i class="fa fa-fw fa-table"></i>&nbsp;
-      <span>Tables</span>
-    </a>
+
     <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
       <i class="fa fa-fw fa-edit"></i>&nbsp;
       <span>Students</span>
     </a>
-   
+
     <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-      <i class="fa fa-th-list"></i>&nbsp;
-      <span>Component</span>
+      <i class="fa fa-info"></i>&nbsp;
+      <span>About Us</span>
     </a>
 
 
 
-   
+
   </div>
   <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
     <i class="fa fa-fw fa-angle-double-{{collapsed?'right':'left'}}"></i>&nbsp;

@@ -5,46 +5,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BsComponentRoutingModule } from './bs-component-routing.module';
 import { BsComponentComponent } from './bs-component.component';
-import {
- 
-    ButtonsComponent,
-    ModalComponent,
-    CollapseComponent,
-    DatePickerComponent,
-    DropdownComponent,
-    PaginationComponent,
-    PopOverComponent,
-    ProgressbarComponent,
-    TabsComponent,
-    RatingComponent,
-    TooltipComponent,
-    TimepickerComponent
-} from './components';
+import { RatingComponent } from './components';
 import { PageHeaderModule } from '../../shared';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        BsComponentRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgbModule,
-        PageHeaderModule
-    ],
-    declarations: [
-        BsComponentComponent,
-        ButtonsComponent,
-        ModalComponent,
-        CollapseComponent,
-        DatePickerComponent,
-        DropdownComponent,
-        PaginationComponent,
-        PopOverComponent,
-        ProgressbarComponent,
-        TabsComponent,
-        RatingComponent,
-        TooltipComponent,
-        TimepickerComponent
-    ]
+  imports: [
+    CommonModule,
+    BsComponentRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    PageHeaderModule
+  ],
+  declarations: [
+    BsComponentComponent,
+
+    RatingComponent,
+   ]
 })
 export class BsComponentModule {}

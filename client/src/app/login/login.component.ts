@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
 import { UserService } from '../user.service';
-import {NgZone} from '@angular/core';
+import { NgZone } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +10,11 @@ import {NgZone} from '@angular/core';
   animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
-  constructor(public router: Router, public userService: UserService,public  zone: NgZone) {}
+  constructor(
+    public router: Router,
+    public userService: UserService,
+    public zone: NgZone
+  ) {}
 
   email: String;
   password: String;
@@ -25,21 +29,19 @@ export class LoginComponent implements OnInit {
       if (res && res.success === true) {
         localStorage.setItem('token', res.token);
         this.zone.run(() => {
-          setTimeout(()=>{
-              this.fetchRequests(this);
-          }, 10000);
-      });
+          setTimeout(() => {
+            this.fetchRequests(this);
+          }, 1000);
+        });
       }
     });
   }
 
-
   fetchRequests(_this) {
-    _this.router.navigate(['/dashboard']);
+    this.router.navigate(['/dashboard']);
   }
   ngOnInit() {}
   onLoggedin() {
     localStorage.setItem('isLoggedin', 'true');
   }
-
 }
