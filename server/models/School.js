@@ -2,6 +2,25 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
+student = {
+
+  name: {
+    type: String,
+    reqired: true
+  },
+   age: {
+    type: String,
+    required: true
+  },
+  location:{
+    type:String,
+    required:true
+  },
+  std:{
+    type:String,
+    required:true
+  }
+}
 const SchoolSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
@@ -9,43 +28,15 @@ const SchoolSchema = new Schema({
   },
   schoolName: {
     type: String,
-    required:true
+    required: true
   },
   location: {
     type: String,
-    reqired:true
+    reqired: true
   },
-  std: {
-    first: {
-      type: [String]
-    },
-    second: {
-      type: [String]
-    },
-    third: {
-      type: [String]
-    },
-    fourth: {
-      type: [String]
-    },
-    fifth: {
-      type: [String]
-    },
-    sixth: {
-      type: [String]
-    },
-    seventh: {
-      type: [String]
-    },
-    eighth: {
-      type: [String]
-    },
-    nineth: {
-      type: [String]
-    },
-    tenth: {
-      type: [String]
-    }
+
+  students: {
+    type: [student]
   }
 });
 

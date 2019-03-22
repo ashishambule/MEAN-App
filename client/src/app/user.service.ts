@@ -5,19 +5,23 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-  uri = 'http://localhost:5000/api/users';
-
   constructor(private http: HttpClient) {}
+  uri = 'http://localhost:3001/api/users';
+
+
+  
+  public headers = { Authorization: localStorage.getItem('token') || '' };
 
   postData(user) {
-    return this.http
-      .post(`${this.uri}/register`, user);
-      // .subscribe(res => console.log(res));
+    return this.http.post(`${this.uri}/register`, user);
+    // .subscribe(res => console.log(res));
   }
 
   loginUser(user) {
-    return this.http
-      .post(`${this.uri}/login`, user);
-      // .subscribe(res => console.log('Login Done'));
+    return this.http.post(`${this.uri}/login`, user);
+    // .subscribe(res => console.log('Login Done'));
+  }
+  getUserInfo() {
+    return this.http.get(`${this.uri}/current`, { headers: this.headers });
   }
 }

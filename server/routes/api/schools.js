@@ -8,8 +8,6 @@ const validateSchoolInput = require('../../validation/school');
 // Load School Model
 const School = require('../../models/School');
 
-
-
 router.post(
   '/',
   passport.authenticate('jwt', {
@@ -28,41 +26,14 @@ router.post(
     // Get fields
     const schoolFields = {};
     schoolFields.user = req.user.id;
-    if (req.body.schoolName) schoolFields.schoolName = req.body.schoolName;
-    if (req.body.location) schoolFields.location = req.body.location;
-
-    schoolFields.std = {};
-    if (typeof req.body.first!=='undefined'){
-      schoolFields.std.first = req.body.first.split(',');
-    } 
-    if (typeof req.body.second!=='undefined'){
-      schoolFields.std.second = req.body.second.split(',');
-    } 
-    if (typeof req.body.third!=='undefined'){
-      schoolFields.std.third = req.body.third.split(',');
-    } 
-    if (typeof req.body.fourth!=='undefined'){
-      schoolFields.std.fourth = req.body.fourth.split(',');
-    } 
-    if (typeof req.body.fifth!=='undefined'){
-      schoolFields.std.fifth = req.body.fifth.split(',');
-    } 
-    if (typeof req.body.sixth!=='undefined'){
-      schoolFields.std.sixth = req.body.sixth.split(',');
-    } 
-    if (typeof req.body.seventh!=='undefined'){
-      schoolFields.std.seventh = req.body.seventh.split(',');
-    } 
-    if (typeof req.body.eighth!=='undefined'){
-      schoolFields.std.eighth = req.body.eighth.split(',');
-    } 
-    if (typeof req.body.nineth!=='undefined'){
-      schoolFields.std.nineth = req.body.nineth.split(',');
-    } 
-    if (typeof req.body.tenth!=='undefined'){
-      schoolFields.std.tenth = req.body.tenth.split(',');
-    } 
+    schoolFields.schoolName=req.user.schoolName
+    console.log(req.user.schoolName);
     
+    if (req.body.schoolName) schoolFields.schoolName = req.body.schoolName;
+
+    if (req.body.students) schoolFields.students = req.body.students;
+    // console.log(req.body);
+
     School.findOne({
       user: req.user.id
     }).then(school => {
@@ -95,7 +66,21 @@ router.post(
   }
 );
 
+router.get('/all', passport.authenticate('jwt', {
+  session: false
+}), 
+(req, res)=> {
+    
+  School.find({}, (err, schools)=> {
+    var schoolMap = [];
 
+    schools.forEach((school)=> {
+      schoolMap.push(school)
+    })
+
+    res.send(schoolMap);  
+  });
+});
 // @route   GET api/school
 // @desc    Get current users school
 // @access  Private

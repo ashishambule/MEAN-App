@@ -25,6 +25,7 @@ package-lock.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+/.vscode
 
 # misc
 /.sass-cache
@@ -34,6 +35,7 @@ package-lock.json
 npm-debug.log
 testem.log
 /typings
+/.history
 
 # e2e
 /e2e/*.js

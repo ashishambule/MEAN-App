@@ -6,16 +6,16 @@ module.exports = function validateProfileInput(data) {
 
   data.schoolName = !isEmpty(data.schoolName) ? data.schoolName : '';
   
-  if (!Validator.isLength(data.schoolName, {
-      min: 2,
-      max: 40
-    })) {
-    errors.schoolName = 'Handle needs to between 2 and 40 characters';
-  }
+  // if (!Validator.isLength(data.schoolName, {
+  //     min: 2,
+  //     max: 40
+  //   })) {
+  //   errors.schoolName = 'Handle needs to between 2 and 40 characters';
+  // }
 
-  if (Validator.isEmpty(data.schoolName)) {
-    errors.schoolName = 'schoolName is required';
-  }
+  // if (Validator.isEmpty(data.schoolName)) {
+  //   errors.schoolName = 'schoolName is required';
+  // }
 
   // if (!isEmpty(data.first)) {
   //   if (!Validator.isAlpha(data.first)) {

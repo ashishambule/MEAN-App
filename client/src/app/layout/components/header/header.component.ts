@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SchoolService } from '../../../school.service';
+import { UserService } from '../../../user.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,13 +10,13 @@ import { SchoolService } from '../../../school.service';
 })
 export class HeaderComponent implements OnInit {
   public pushRightClass: string;
-  public schoolName: String;
+
+  public principalName: String;
   constructor(
-    private translate: TranslateService,
     public router: Router,
-    private schoolService: SchoolService
+    private userService: UserService
   ) {
-    this.schoolName = 'User';
+    this.principalName = '';
     this.router.events.subscribe(val => {
       if (
         val instanceof NavigationEnd &&
@@ -25,11 +26,13 @@ export class HeaderComponent implements OnInit {
         this.toggleSidebar();
       }
     });
+    this.getSchool("1");
+
   }
 
   ngOnInit() {
     this.pushRightClass = 'push-right';
-    this.getSchoolName();
+    this.getSchool("2");
   }
 
   isToggled(): boolean {
@@ -46,10 +49,12 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
-  getSchoolName() {
-    this.schoolService.getSchoolName().subscribe((res: any) => {
-      if (res && res.schoolName) {
-        this.schoolName = res.schoolName;
+  getSchool(a) {
+    console.log(a);
+    
+    this.userService.getUserInfo().subscribe((res: any) => {
+      if (res && res.principalName) {
+        this.principalName = res.principalName;
       }
     });
   }
