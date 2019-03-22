@@ -39,7 +39,7 @@ export class FormComponent implements OnInit {
   }
   ngOnInit() {
     this.addSchool();
-    this.getSchool()
+    this.getSchool();
   }
   addStudent() {
     this.students.unshift({ name: '', age: '', location: '', std: '' });

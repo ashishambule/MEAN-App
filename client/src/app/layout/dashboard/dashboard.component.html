@@ -19,7 +19,7 @@
         Bar Chart
       </div>
       <div class="card-body" *ngIf="barChartData[0].data">
-        <canvas baseChart [datasets]=barChartData [labels]="barChartLabels" [options]="barChartOptions"
+        <canvas height="300" baseChart [datasets]=barChartData [labels]="barChartLabels" [options]="barChartOptions"
           [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
           (chartClick)="chartClicked($event)">
         </canvas>
@@ -32,7 +32,7 @@
         {{schoolName}}
       </div>
       <div class="card-body" *ngIf="barChartData1[0].data">
-        <canvas baseChart [datasets]="barChartData1" [labels]="barChartLabels1" [options]="barChartOptions"
+        <canvas height="300" baseChart [datasets]="barChartData1" [labels]="barChartLabels1" [options]="barChartOptions"
           [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
           >
         </canvas>

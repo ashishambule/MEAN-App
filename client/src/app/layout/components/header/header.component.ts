@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { SchoolService } from '../../../school.service';
 import { UserService } from '../../../user.service';
 @Component({
   selector: 'app-header',
@@ -33,10 +31,6 @@ export class HeaderComponent implements OnInit {
     this.getSchool();
   }
 
-  ngDoCheck() {
-    this.principalName = localStorage.getItem('principalName');
-  }
-
   isToggled(): boolean {
     const dom: Element = document.querySelector('body');
     return dom.classList.contains(this.pushRightClass);
@@ -57,7 +51,7 @@ export class HeaderComponent implements OnInit {
     this.userService.getUserInfo().subscribe((res: any) => {
       if (res && res.principalName) {
         this.principalName = res.principalName;
-        localStorage.setItem('principalName', res.principalName)
+        localStorage.setItem('principalName', res.principalName);
       }
     });
   }

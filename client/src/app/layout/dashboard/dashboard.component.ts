@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { SchoolService } from '../../school.service';
-import { BaseChartDirective } from 'ng2-charts';
 import { UserService } from 'src/app/user.service';
 @Component({
   selector: 'app-dashboard',
@@ -11,8 +10,7 @@ import { UserService } from 'src/app/user.service';
 })
 export class DashboardComponent implements OnInit {
   // Bar Chart
-  @ViewChild(BaseChartDirective)
-  public chart: BaseChartDirective;
+
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true,
@@ -28,7 +26,7 @@ export class DashboardComponent implements OnInit {
   };
 
   schoolName: String;
-  unauthorise: Boolean = false ;
+  unauthorise: Boolean = false;
 
   public barChartType: string;
   public barChartLegend: boolean;
@@ -56,9 +54,10 @@ export class DashboardComponent implements OnInit {
   public schoolList: any = [];
   public studentCount = 0;
 
-  constructor(private schoolService: SchoolService,
+  constructor(
+    private schoolService: SchoolService,
     private userService: UserService
-    ) {
+  ) {
     this.getSchoolList();
     this.getSchool();
   }
@@ -75,7 +74,6 @@ export class DashboardComponent implements OnInit {
         this.studentCount = this.getStudentCount(res);
         this.barChartLabels = this.getSchoolNameList();
         this.barChartData[0].data = this.getNumberOfStudentsInSchool();
-        setTimeout(() =>  this.updateChart());
       }
     });
   }
@@ -86,10 +84,6 @@ export class DashboardComponent implements OnInit {
       count = count + school.students.length;
     });
     return count;
-  }
-
- updateChart() {
-    this.chart.chart.update(); // This re-renders the canvas element.
   }
 
   getSchoolNameList() {
@@ -111,7 +105,7 @@ export class DashboardComponent implements OnInit {
   public chartClicked(e: any): void {
     console.log(e);
     this.barChartData1[0].data = null;
-    if(e.active[0]._model.label === this.schoolName){
+    if (e.active[0]['_model'].label === this.schoolName) {
       const school = this.schoolList.filter(
         s => s.schoolName === e.active[0]._model.label
       )[0];
@@ -128,7 +122,7 @@ export class DashboardComponent implements OnInit {
         this.getStudentCountByStd(10, school)
       ];
       this.barChartData1[0].data = data;
-    }else{
+    } else {
       this.unauthorise = true;
     }
   }
@@ -145,7 +139,7 @@ export class DashboardComponent implements OnInit {
     this.userService.getUserInfo().subscribe((res: any) => {
       if (res && res.schoolName) {
         this.schoolName = res.schoolName;
-        localStorage.setItem('principalName', res.principalName)
+        localStorage.setItem('principalName', res.principalName);
       }
     });
   }

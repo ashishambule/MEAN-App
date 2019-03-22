@@ -12,8 +12,8 @@ export class SchoolService {
     return this.http.get(`${this.uri}/school`, { headers: this.headers });
     }
 
-    postStudent(sData){
-      return this.http.post(`${this.uri}/school`, sData,{ headers: this.headers });
+    postStudent(sData) {
+      return this.http.post(`${this.uri}/school`, sData, { headers: this.headers });
     }
 
     getCollection() {
